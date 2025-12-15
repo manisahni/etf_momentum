@@ -513,7 +513,8 @@ def backtest_rotation(
         period_dates = price_df.loc[date:next_date].index[1:]
 
         for day in period_dates:
-            # Check stops
+            # PHASE 1: Check stops and collect stopped positions
+            stopped_today = []
             for ticker in list(positions.keys()):
                 pos = positions[ticker]
                 current_price = price_df.loc[day, ticker]
@@ -524,31 +525,40 @@ def backtest_rotation(
                     pos['stop_price'] = current_price * (1 - stop_loss)
 
                 if current_price <= pos['stop_price']:
-                    pnl_pct = (current_price / pos['entry_price'] - 1) * 100
+                    stopped_today.append((ticker, pos, current_price))
 
-                    trades.append(Trade(
-                        entry_date=pos['entry_date'],
-                        exit_date=day,
-                        ticker=ticker,
-                        entry_price=pos['entry_price'],
-                        exit_price=current_price,
-                        momentum=pos['momentum'],
-                        stop_price=pos['stop_price'],
-                        exit_reason='stop_loss',
-                        pnl_pct=pnl_pct
-                    ))
-                    del positions[ticker]
+            # PHASE 2: Apply stop losses to portfolio (BUG FIX - was missing!)
+            for ticker, pos, exit_price in stopped_today:
+                # Calculate P&L as decimal (not percentage)
+                pnl_decimal = (exit_price / pos['entry_price'] - 1)
+                # Apply the loss using position's weight
+                portfolio_value *= (1 + pnl_decimal * pos['shares'])
 
-            # Calculate portfolio value
+                trades.append(Trade(
+                    entry_date=pos['entry_date'],
+                    exit_date=day,
+                    ticker=ticker,
+                    entry_price=pos['entry_price'],
+                    exit_price=exit_price,
+                    momentum=pos['momentum'],
+                    stop_price=pos['stop_price'],
+                    exit_reason='stop_loss',
+                    pnl_pct=pnl_decimal * 100
+                ))
+                del positions[ticker]
+
+            # PHASE 3: Calculate daily return for remaining positions
+            # Note: We use original weights, not re-weighted to 100%
+            # This means stopped-out capital sits as cash (0% return)
             if positions:
                 daily_return = 0
-                weight = 1.0 / len(positions)
                 for ticker, pos in positions.items():
                     prev_idx = price_df.index.get_loc(day) - 1
                     if prev_idx >= 0:
                         prev_price = price_df.iloc[prev_idx][ticker]
                         curr_price = price_df.loc[day, ticker]
-                        daily_return += (curr_price / prev_price - 1) * weight
+                        # Use position's actual weight (shares field)
+                        daily_return += (curr_price / prev_price - 1) * pos['shares']
 
                 portfolio_value *= (1 + daily_return)
 

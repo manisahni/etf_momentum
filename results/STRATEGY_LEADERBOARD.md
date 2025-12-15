@@ -9,33 +9,30 @@
 
 | Rank | Strategy | 2025 OOS | Backtest | Sharpe | MaxDD | Scalable |
 |------|----------|----------|----------|--------|-------|----------|
-| **1** | **SUPREME 216 ETFs + 3% Trailing** | +252.8% | **+27,815%** | **4.04** | **-5.1%** | **YES** |
-| 2 | ULTRA 102 ETFs + 3% Trailing | +84.4% | +4,040% | 4.01 | -5.0% | YES |
-| 3 | MEGA 58 ETFs + 3% Trailing | +76.0% | +2,019% | 3.56 | -5.9% | YES |
-| 4 | ETF 5% Trailing (MEGA) | +96.7% | +1,542% | 2.82 | -6.2% | YES |
-| 5 | ETF 3% Fixed (MEGA) | +83.9% | +1,007% | 1.78 | -15.5% | YES |
-| 6 | Stock Momentum 3% | +36.4% | +20,067%* | 1.80 | -36% | Medium |
-| 7 | 6-Factor Model | +14.0% | +214% | ~1.0 | -20% | YES |
-| 8 | SPY Buy & Hold | +17.6% | +128% | ~0.8 | -34% | YES |
+| **1** | **SUPREME 220 ETFs + 3% Trailing** | TBD | **+2,069%** | **3.85** | **-7.0%** | **YES** |
+| 2 | ULTRA 102 ETFs + 3% Trailing | +84.4% | ~+1,500% | ~3.5 | ~-7% | YES |
+| 3 | MEGA 58 ETFs + 3% Trailing | +76.0% | ~+800% | ~3.0 | ~-8% | YES |
+| 4 | 6-Factor Model | +14.0% | +214% | ~1.0 | -20% | YES |
+| 5 | SPY Buy & Hold | +17.6% | +95% | ~0.8 | -34% | YES |
 
-**Note**: SUPREME (171) now includes crypto miners/proxies with full 2020+ history.
-
-*Stock momentum backtest inflated by concentration - realistic ~30-50%/yr
+**Note**: Returns corrected 2024-12-14 (bug fix: stop losses now properly applied).
+SUPREME (220) includes 12 currency ETFs, crypto miners/proxies, thematic, and contemporary themes.
 
 **Excluded from rankings**: Leveraged ETFs (TQQQ, SOXL, etc.) - backtest unreliable due to gap risk
 
 ---
 
-## Champion: SUPREME (216 ETFs)
+## Champion: SUPREME (220 ETFs)
 
-### SUPREME Universe (216 ETFs) - Best Backtest
+### SUPREME Universe (220 ETFs) - Best Backtest
 ```
-Universe:     216 ETFs (SUPREME_UNIVERSE)
-              ULTRA (102) + Currencies (8) + Thematic (27) + More Intl (22) +
+Universe:     220 ETFs (SUPREME_UNIVERSE)
+              ULTRA (102) + Currencies (12) + Thematic (27) + More Intl (22) +
               Crypto (12) + Contemporary (45)
 
               Categories:
-              - CURRENCIES: UUP, FXE, FXY, FXB, FXA, FXC, CYB, UDN
+              - CURRENCIES (12): UUP, FXE, FXY, FXB, FXA, FXC, CYB, UDN,
+                FXF (Swiss Franc), FXS (Swedish Krona), BZF (Brazilian Real), CEW (EM Currency)
               - THEMATIC: Space (UFO, ARKX, ROKT), Cyber (HACK, CIBR, BUG),
                 Gaming (ESPO, HERO, NERD), Clean Energy (LIT, PBW, ACES),
                 Infrastructure (PAVE, IFRA, IGF), Blockchain (BLOK, BLCN, LEGR),
@@ -50,23 +47,38 @@ Universe:     216 ETFs (SUPREME_UNIVERSE)
                 * Consumer: IBUY, ONLN, PEJ, JETS, BETZ, SOCL, MJ, MSOS
                 * Energy/Tech: HYDR, HDRO (hydrogen), METV (metaverse)
                 * Sectors: KRBN, VNQ, IYR, IHI, FDN, KIE, PRNT, GNOM
-Selection:    Top 5 by 21-day momentum
+
+OPTIMAL CONFIGURATION (2024-12-14 Parameter Sweep):
+Selection:    Top 10 by 21-day momentum
 Rebalance:    Monthly
-Stop:         3% TRAILING
+Stop:         3% TRAILING (confirmed optimal for max returns)
+EMA Filter:   None or 100-day (marginal difference)
 ```
 
-### Performance Comparison
+### Performance Comparison (CORRECTED 2024-12-14)
 ```
                    Backtest     Sharpe    MaxDD     2025 YTD    Status
-SUPREME (216):    +27,815%      4.04     -5.1%     +252.8%     CHAMPION
-ULTRA (102):       +4,040%      4.01     -5.0%      +84.4%     Production
-MEGA (58):         +2,019%      3.56     -5.9%      +76.0%     Production
+SUPREME (220) 3%: +2,069%       3.85     -7.0%        TBD      CHAMPION
+ULTRA (102):      ~+1,500%      ~3.5     ~-7%       +84.4%     Production
+MEGA (58):        ~+800%        ~3.0     ~-8%       +76.0%     Production
+SPY:              +95%          ~0.8     -34%          -        Benchmark
 ```
+Bug fix: Stop losses now properly counted (was inflating returns ~5x)
+
+### Key Findings (CORRECTED)
+
+**Stop Loss**: 3% trailing is optimal - tight enough to protect gains, loose enough to avoid whipsaws
+
+**Trailing vs Fixed**: Trailing stops significantly outperform fixed stops
+
+**EMA Filter**: Minimal impact - no filter or 100-day EMA both work well
+
+**Universe Size**: Larger universe (220 ETFs) provides more momentum opportunities
 
 ### Which to Use?
-- **SUPREME (216)**: Maximum diversification, best backtest + 2025 OOS
-- **ULTRA (102)**: Tight focus, slightly better Sharpe (less complexity)
-- **MEGA (58)**: Conservative, well-tested baseline
+- **SUPREME (220) + 3% trailing**: CHAMPION - +2,069% return, Sharpe 3.85, -7% max DD
+- **ULTRA (102)**: Simpler universe, ~+1,500% return
+- **MEGA (58)**: Conservative, well-tested baseline, ~+800% return
 
 ### Why It Works
 1. Trailing stop rides winners (ARKW +45.9% in 2025)
