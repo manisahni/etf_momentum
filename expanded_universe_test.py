@@ -95,8 +95,9 @@ SIZE_ETFS = ['IWM', 'IWO', 'IWN', 'IJR', 'IJH', 'VB', 'VO', 'MDY']
 # NEW CATEGORIES (Added 2025-12-14)
 # ============================================================================
 
-# Currencies (8)
-CURRENCIES = ['UUP', 'FXE', 'FXY', 'FXB', 'FXA', 'FXC', 'CYB', 'UDN']
+# Currencies (12)
+CURRENCIES = ['UUP', 'FXE', 'FXY', 'FXB', 'FXA', 'FXC', 'CYB', 'UDN', 'FXF', 'FXS', 'BZF', 'CEW']
+# FXF=Swiss Franc, FXS=Swedish Krona, BZF=Brazilian Real, CEW=Emerging Markets Currency
 
 # Thematic - Space (3)
 SPACE = ['UFO', 'ARKX', 'ROKT']
@@ -352,7 +353,7 @@ UNIVERSES = {
     'EUROPE_DEFENSE': EUROPE_DEFENSE,
     'ELECTRIFICATION_NEW': ELECTRIFICATION_NEW,
 
-    # SUPREME_UNIVERSE: Everything (216 ETFs)
+    # SUPREME_UNIVERSE: Everything (220 ETFs)
     # Note: LEVERAGED excluded from SUPREME due to daily reset risk
     # Note: Includes some ETFs with 1-4 years history (HYDR, HDRO, METV, EUAD, NATO)
     'SUPREME_UNIVERSE': (
@@ -380,7 +381,7 @@ UNIVERSES = {
         CARBON + REAL_ESTATE + MEDICAL_DEVICES + INTERNET + INSURANCE + PRINTING_3D + GENOMICS +
         # Contemporary Themes - Energy & Tech (5)
         HYDROGEN + METAVERSE + ELECTRIFICATION_NEW
-    ),  # 216 ETFs
+    ),  # 220 ETFs
     # Note: ELECTRIFICATION_NEW (ZAP, ELFY) have <1 year history - backtest uses available data
 
     # Stock universes (not used for ETF rotation)
