@@ -7,30 +7,43 @@
 
 ## Final Rankings
 
-| Rank | Strategy | 2025 OOS | Backtest | Sharpe | MaxDD | Scalable |
-|------|----------|----------|----------|--------|-------|----------|
-| **1** | **SUPREME 220 + Redistribute** | +333% | **+517,223%** | **3.60** | **-13.5%** | **YES** |
-| 2 | SUPREME 220 + Cash | +106% | +4,529% | 3.61 | -8.1% | YES |
-| 3 | ULTRA 102 ETFs + 3% Trailing | +84.4% | ~+1,500% | ~3.5 | ~-7% | YES |
-| 4 | MEGA 58 ETFs + 3% Trailing | +76.0% | ~+800% | ~3.0 | ~-8% | YES |
-| 5 | 6-Factor Model | +14.0% | +214% | ~1.0 | -20% | YES |
-| 6 | SPY Buy & Hold | +17.6% | +95% | ~0.8 | -34% | YES |
+| Rank | Strategy | 2025 OOS | Backtest (Ideal) | Realistic Est. | MaxDD | Scalable |
+|------|----------|----------|------------------|----------------|-------|----------|
+| **1** | **SUPREME 220 + Redistribute** | +333% | +517,223% | **+20,000-100,000%** | -13.5% | ⚠️ |
+| 2 | SUPREME 220 + Cash | +106% | +4,529% | +600-1,700% | -8.1% | YES |
+| 3 | ULTRA 102 ETFs + 3% Trailing | +84.4% | ~+1,500% | ~+500-1,000% | ~-7% | YES |
+| 4 | MEGA 58 ETFs + 3% Trailing | +76.0% | ~+800% | ~+300-600% | ~-8% | YES |
+| 5 | 6-Factor Model | +14.0% | +214% | +150-200% | -20% | YES |
+| 6 | SPY Buy & Hold | +17.6% | +95% | +95% | -34% | YES |
 
-**Note**: Returns corrected 2024-12-14 (bug fix: stop losses now properly applied).
-SUPREME (220) includes 12 currency ETFs, crypto miners/proxies, thematic, and contemporary themes.
+**Note**: "Realistic Est." assumes 0.1% transaction cost + 1-2% slippage on stops. Ideal returns assume perfect execution.
 
-### 🔥 CRITICAL: Cash vs Redistribute Mode
+### ⚠️ IMPORTANT: Backtest vs Reality
 
-When positions get stopped out, you have two choices:
-- **CASH**: Stopped capital sits idle until next rebalance (~22% avg exposure)
+The **ideal** backtest shows extreme returns because:
+1. Crypto ETFs (MSTR, RIOT, MARA) went 10-100x during 2020-2024
+2. Perfect stop execution assumed (no gaps, no slippage)
+3. Redistribution concentrates you into winners
+
+**Realistic adjustments:**
+| Scenario | Cash | Redistribute |
+|----------|------|--------------|
+| Ideal (no costs) | +4,529% | +517,223% |
+| Realistic (0.1% txn, 1% slip) | +1,685% | +106,118% |
+| Conservative (0.2% txn, 2% slip) | +588% | +21,606% |
+
+### 🔥 Cash vs Redistribute Mode
+
+When positions get stopped out:
+- **CASH**: Stopped capital sits idle (~22% avg exposure)
 - **REDISTRIBUTE**: Stopped capital goes to survivors (~52% avg exposure)
 
-| Mode | Total Return | Sharpe | Max DD | Avg Exposure |
-|------|-------------|--------|--------|--------------|
-| REDISTRIBUTE | +517,223% | 3.60 | -13.5% | 51.6% |
-| CASH | +4,529% | 3.61 | -8.1% | 21.6% |
+| Mode | Avg Exposure | Why |
+|------|--------------|-----|
+| REDISTRIBUTE | 51.6% | Stays fully invested, higher returns, higher risk |
+| CASH | 21.6% | Cash buffer during corrections, lower returns, lower risk |
 
-**Key Insight**: With 95% stop rate, CASH mode means you're mostly in cash. Redistribute keeps you invested.
+**Key Insight**: Redistribute keeps you invested but amplifies both gains AND losses.
 
 **Excluded from rankings**: Leveraged ETFs (TQQQ, SOXL, etc.) - backtest unreliable due to gap risk
 
