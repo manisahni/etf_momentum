@@ -9,14 +9,28 @@
 
 | Rank | Strategy | 2025 OOS | Backtest | Sharpe | MaxDD | Scalable |
 |------|----------|----------|----------|--------|-------|----------|
-| **1** | **SUPREME 220 ETFs + 3% Trailing** | TBD | **+2,069%** | **3.85** | **-7.0%** | **YES** |
-| 2 | ULTRA 102 ETFs + 3% Trailing | +84.4% | ~+1,500% | ~3.5 | ~-7% | YES |
-| 3 | MEGA 58 ETFs + 3% Trailing | +76.0% | ~+800% | ~3.0 | ~-8% | YES |
-| 4 | 6-Factor Model | +14.0% | +214% | ~1.0 | -20% | YES |
-| 5 | SPY Buy & Hold | +17.6% | +95% | ~0.8 | -34% | YES |
+| **1** | **SUPREME 220 + Redistribute** | +333% | **+517,223%** | **3.60** | **-13.5%** | **YES** |
+| 2 | SUPREME 220 + Cash | +106% | +4,529% | 3.61 | -8.1% | YES |
+| 3 | ULTRA 102 ETFs + 3% Trailing | +84.4% | ~+1,500% | ~3.5 | ~-7% | YES |
+| 4 | MEGA 58 ETFs + 3% Trailing | +76.0% | ~+800% | ~3.0 | ~-8% | YES |
+| 5 | 6-Factor Model | +14.0% | +214% | ~1.0 | -20% | YES |
+| 6 | SPY Buy & Hold | +17.6% | +95% | ~0.8 | -34% | YES |
 
 **Note**: Returns corrected 2024-12-14 (bug fix: stop losses now properly applied).
 SUPREME (220) includes 12 currency ETFs, crypto miners/proxies, thematic, and contemporary themes.
+
+### 🔥 CRITICAL: Cash vs Redistribute Mode
+
+When positions get stopped out, you have two choices:
+- **CASH**: Stopped capital sits idle until next rebalance (~22% avg exposure)
+- **REDISTRIBUTE**: Stopped capital goes to survivors (~52% avg exposure)
+
+| Mode | Total Return | Sharpe | Max DD | Avg Exposure |
+|------|-------------|--------|--------|--------------|
+| REDISTRIBUTE | +517,223% | 3.60 | -13.5% | 51.6% |
+| CASH | +4,529% | 3.61 | -8.1% | 21.6% |
+
+**Key Insight**: With 95% stop rate, CASH mode means you're mostly in cash. Redistribute keeps you invested.
 
 **Excluded from rankings**: Leveraged ETFs (TQQQ, SOXL, etc.) - backtest unreliable due to gap risk
 
